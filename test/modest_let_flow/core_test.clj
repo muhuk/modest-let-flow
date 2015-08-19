@@ -4,7 +4,6 @@
             [modest-let-flow.core :refer :all]))
 
 
-
 (deftest test-let-flow
   (is (= 2
          @(let-flow []
@@ -27,7 +26,11 @@
          @(let [x (d/future 2)]
             (let-flow [y (d/future 3)]
               (let-flow [z (d/future 4)]
-                (+ @x y z)))))))
+                (+ @x y z))))))
+  (is (= 9
+         @(let-flow [x (d/future 2)
+                     [y z] (d/future (vector (inc x) 4))]
+            (+ x y z)))))
 
 
 (deftest test-let-flow'
@@ -49,7 +52,6 @@
             (let-flow' [y (d/future 3)]
               (+ @x y)))))
   (is (= 9
-         @(let [x (d/future 2)]
-            (let-flow' [y (d/future 3)]
-              (let-flow' [z (d/future 4)]
-                (+ @x y z)))))))
+         @(let-flow' [x (d/future 2)
+                      [y z] (d/future (vector (inc x) 4))]
+            (+ x y z)))))
