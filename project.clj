@@ -3,5 +3,5 @@
   :url "https://github.com/muhuk/modest-let-flow"
   :license {:name "MIT License"
             :url "http://opensource.org/licenses/MIT"}
-  :dependencies [[manifold "0.1.2"]]
-  :profiles {:dev {:dependencies [[org.clojure/clojure "1.7.0"]]}})
+  :profiles {:provided {:dependencies [[org.clojure/clojure "1.7.0"]
+                                       [manifold "0.1.2"]]}})
